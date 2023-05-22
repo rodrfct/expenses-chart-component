@@ -13,7 +13,7 @@
 .card {
     background-color: var(--soft-red);
     border-radius: 15px;
-    padding: 1rem 1.5rem;
+    padding: .7rem 1.5rem;
     color: var(--very-pale-orange);
 
     display: flex;
@@ -22,11 +22,15 @@
 
 p {
     font-size: .7rem;
-    margin: .5rem 0;
+    margin: .4rem 0;
 }
 
 .balance {
     font-size: 1.2rem;
     font-weight: 700;
+}
+
+img {
+    width: 3rem;
 }
 </style>
