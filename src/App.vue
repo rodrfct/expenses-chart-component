@@ -15,7 +15,7 @@ import Spending from './components/Spending.vue';
 
 <style scoped>
   main {
-    width: 300px;
+    width: 350px;
 
     position: absolute;
     top: 50%;
