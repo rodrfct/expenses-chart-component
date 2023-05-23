@@ -1,10 +1,22 @@
 <script setup>
+import { onMounted, ref } from 'vue';
+
 const res = await fetch('data.json');
 const data = await res.json()
 
 const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 const currentDate = new Date();
 const today = daysOfWeek[currentDate.getDay()];
+
+// Initial height, must be non-cero but invisible
+let height = ref(1)
+
+// After some time, change to 0, so the actual height of the bars is used instead
+onMounted(() => {
+    setTimeout(() => {
+        height.value = 0
+    }, 800);
+})
 
 </script>
 
@@ -13,7 +25,7 @@ const today = daysOfWeek[currentDate.getDay()];
         <li v-for="i in data"
          :day="i.day" 
          :class="i.day == today ? 'today' : '' "
-         :style="`height: ${150 * i.amount / 100}%;`" ></li>
+         :style="height ? `${height}` : `height: ${150 * i.amount / 100}%;`" ></li>
     </ul>
 </template>
 
