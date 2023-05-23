@@ -15,7 +15,7 @@ let height = ref(1)
 onMounted(() => {
     setTimeout(() => {
         height.value = 0
-    }, 800);
+    }, 600);
 })
 
 </script>
@@ -24,8 +24,13 @@ onMounted(() => {
     <ul>
         <li v-for="i in data"
          :day="i.day" 
+         :amount="`$${i.amount}`"
          :class="i.day == today ? 'today' : '' "
-         :style="height ? `${height}` : `height: ${150 * i.amount / 100}%;`" ></li>
+         :style="height ? `${height}` : `height: ${150 * i.amount / 100}%;`" >
+        
+        <span class="amount">{{ `$${i.amount}` }}</span>
+
+        </li>
     </ul>
 </template>
 
@@ -50,7 +55,7 @@ li {
     border-radius: 4px;
     height: 0;
     max-height: 100%;
-    transition: height 2s ease;
+    transition: height 2s ease, filter .5s ease;
 }
 
 li::after {
@@ -60,6 +65,30 @@ li::after {
     bottom: -1.2rem;
 
     transform: translate(-50%, 0);
+}
+
+li:hover {
+    cursor: pointer;
+    filter: brightness(130%);
+}
+
+.amount {
+    visibility: hidden;
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    text-align: center;
+    color: var(--very-pale-orange);
+
+    padding: .4em;
+    background-color: var(--dark-brown);
+    border-radius: 3px;
+}
+
+li:hover .amount{
+    visibility: visible;
 }
 
 /*Apparently support for attr() is very experimental across all browsers
