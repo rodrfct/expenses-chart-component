@@ -28,7 +28,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [My Solution]()
+- Solution URL: [My Solution](https://www.frontendmentor.io/solutions/animated-expenses-chart-with-vue-fiiax_YyLA)
 - Live Site URL: [My Live Site](https://rodrfct.github.io/expenses-chart-component/)
 
 ## My process
