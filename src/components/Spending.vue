@@ -1,8 +1,19 @@
-<script setup></script>
+<script setup>
+import Chart from './Chart.vue';
+
+</script>
 
 <template>
     <div class="card">
         <p id="title" class="bold">Spending - Last 7 days</p>
+
+        <Suspense>
+            <Chart />
+
+            <template #fallback>
+                Loading...
+            </template>
+        </Suspense>
 
         <hr>
 
@@ -44,12 +55,15 @@
 }
 
 hr {
-    border: 1px solid var(--medium-brown);
+    border: none;
+    border-top: 1px solid var(--medium-brown);
+    margin: 1.7rem 0;
 }
 
 #months-info {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 #months-info p {
