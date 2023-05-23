@@ -1,5 +1,5 @@
 <script setup>
-const res = await fetch('/data.json');
+const res = await fetch('data.json');
 const data = await res.json()
 
 const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
