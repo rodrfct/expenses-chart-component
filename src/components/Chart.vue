@@ -23,11 +23,10 @@ onMounted(() => {
 <template>
     <ul>
         <li v-for="i in data"
-         :day="i.day" 
-         :amount="`$${i.amount}`"
          :class="i.day == today ? 'today' : '' "
          :style="height ? `${height}` : `height: ${150 * i.amount / 100}%;`" >
         
+        <span class="day">{{ i.day }}</span>
         <span class="amount">{{ `$${i.amount}` }}</span>
 
         </li>
@@ -58,8 +57,7 @@ li {
     transition: height 2s ease, filter .5s ease;
 }
 
-li::after {
-    content: attr(day);
+.day {
     position: absolute;
     left: 50%;
     bottom: -1.2rem;
