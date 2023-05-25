@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 const res = await fetch('data.json');
 const data = await res.json()
@@ -8,13 +8,18 @@ const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 const currentDate = new Date();
 const today = daysOfWeek[currentDate.getDay()];
 
+const chartHeight = 150
+const chartHeightToPixels = computed(() => {
+    return `${chartHeight}px`
+})
+
 // Initial height, must be non-cero but invisible
-let height = ref(1)
+const barHeight = ref(1)
 
 // After some time, change to 0, so the actual height of the bars is used instead
 onMounted(() => {
     setTimeout(() => {
-        height.value = 0
+        barHeight.value = 0
     }, 600);
 })
 
@@ -24,7 +29,7 @@ onMounted(() => {
     <ul>
         <li v-for="i in data"
          :class="i.day == today ? 'today' : '' "
-         :style="height ? `${height}` : `height: ${150 * i.amount / 100}%;`" >
+         :style="barHeight ? '' : `height: ${chartHeight * i.amount / 100}%;`" >
         
         <span class="day">{{ i.day }}</span>
         <span class="amount">{{ `$${i.amount}` }}</span>
@@ -42,7 +47,7 @@ ul {
     column-gap: .7rem;
 
     padding: 0;
-    height: 150px;
+    height: v-bind(chartHeightToPixels);
     margin-bottom: 2.5rem;
 }
 
